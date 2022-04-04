@@ -1,0 +1,76 @@
+{
+    "name": "Editor Input Actions",
+    "maps": [
+        {
+            "name": "Editor",
+            "id": "80436fa2-b985-4e80-8c3f-62442cd3c3cf",
+            "actions": [
+                {
+                    "name": "SwitchFullscreenMode",
+                    "type": "Button",
+                    "id": "9535087b-c63f-42e6-a76c-cb6f7fa6ae03",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TestButton",
+                    "type": "Button",
+                    "id": "5fde0872-3b15-46b5-b444-caeba3a3cd71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "One Modifier",
+                    "id": "7790bbf5-dce2-491a-a3e5-17d3b5800319",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchFullscreenMode",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "3d62f9cf-3c86-4c02-9031-9c8130f1b119",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchFullscreenMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "d4d467bb-de41-4c62-8624-b221af9ac884",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchFullscreenMode",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "541a6f3e-d505-472a-a962-a20981a144aa",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
