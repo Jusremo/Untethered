@@ -130,6 +130,8 @@ namespace Untethered.Characters
 
         public void AttemptToJump()
         {
+            if (_player.GroundedChecker.GroundedState != GroundedState.Grounded) return;
+            
             _player.CharacterAnimator.PlayAnimation(CharacterAnimations.Jumping);
             _player.GroundedChecker.ForceGroundedStateForTime(GroundedState.Falling, 0.5f);
             _player.Rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
