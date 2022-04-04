@@ -36,7 +36,6 @@ namespace Untethered.Characters
         public void PlayAnimation(AnimationClip anim)
         {
             if (_currentAnimState != null) _currentAnimState.Events.OnEnd -= RevertToDefaultMovementAnim;
-
             _currentAnimState = _animancer.Play(anim, _transitionSpeed);
             _currentAnimState.Events.OnEnd += RevertToDefaultMovementAnim;
         }
@@ -45,7 +44,7 @@ namespace Untethered.Characters
         {
             if (!_characterAnims.TryGetValue(anim, out ClipTransition animClip)) return;
             
-            print(anim);
+            if (_currentAnimState != null) _currentAnimState.Events.OnEnd -= RevertToDefaultMovementAnim;
             _currentAnimState = _animancer.Play(animClip, _transitionSpeed);
             _currentAnimState.Events.OnEnd += RevertToDefaultMovementAnim;
         }

@@ -45,10 +45,9 @@ namespace Untethered.Characters
         private void RaycastForGround()
         {
             if (_groundCheckDelayTimer > Time.time) return;
+            _groundCheckDelayTimer = Time.time + _groundCheckInterval;
 
-            float rayDist = _rayDistance;
-            if (GroundedState == GroundedState.Falling || GroundedState == GroundedState.Landing)
-                rayDist *= GetFallSpeedRayDistanceMultiplier(_player.Rigidbody.velocity.y);
+            float rayDist = _rayDistance * GetFallSpeedRayDistanceMultiplier(_player.Rigidbody.velocity.y);
             
             bool hitGround = Physics.BoxCast(transform.position + (Vector3.up * _raycastGroundOffset), Vector3.one * _feetWidth, -Vector3.up, out raycastHit, Quaternion.identity, rayDist, ~(int)LayerMasks.Characters);
 

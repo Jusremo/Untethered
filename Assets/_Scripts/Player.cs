@@ -14,6 +14,7 @@ namespace Untethered.Characters
         public ControlsInput Input { get; private set; }
         public Rigidbody Rigidbody { get; private set; }
         public Collider Collider { get; private set; }
+        public CharacterController CharacterController { get; private set; }
 
         private void Awake() 
         {
@@ -22,6 +23,7 @@ namespace Untethered.Characters
             Input = GetComponent<ControlsInput>();
             Rigidbody = GetComponent<Rigidbody>();
             Collider = GetComponent<Collider>();
+            CharacterController = GetComponent<CharacterController>();
         }
     }
 }
