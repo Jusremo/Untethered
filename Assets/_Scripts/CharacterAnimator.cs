@@ -7,13 +7,13 @@ using Sirenix.OdinInspector;
 
 namespace Untethered.Characters
 {
-    public enum CharacterAnimations {Jumping, Landing}
+    public enum BasicAnimations {Jumping, Landing}
     public class CharacterAnimator : SerializedMonoBehaviour
     {
         [SerializeField] private Player _player;
         [SerializeField] private float _transitionSpeed = 0.1f;
         [SerializeField] private Dictionary<MoveState, AnimationClip> _movementAnims;
-        [SerializeField] private Dictionary<CharacterAnimations, ClipTransition> _characterAnims;
+        [SerializeField] private Dictionary<BasicAnimations, ClipTransition> _characterAnims;
         [FoldoutGroup("Attacks")]
         [EventNames("Hit", "Finish")]
         [SerializeField] private ClipTransition _clipTest;
@@ -33,19 +33,23 @@ namespace Untethered.Characters
             _player.GroundedChecker.OnGroundedStateChanged.AddListener(OnGroundedStateChanged);
         }
 
+        public void PlayAnimation(BasicAnimations anim)
+        {
+            if (!_characterAnims.TryGetValue(anim, out ClipTransition animClip)) return;
+            PlayAnimation(animClip);
+        }
+
+        internal void PlayAnimation(ClipTransition animation)
+        {
+            if (_currentAnimState != null) _currentAnimState.Events.OnEnd -= RevertToDefaultMovementAnim;
+            _currentAnimState = _animancer.Play(animation, _transitionSpeed);
+            _currentAnimState.Events.OnEnd += RevertToDefaultMovementAnim;
+        }
+
         public void PlayAnimation(AnimationClip anim)
         {
             if (_currentAnimState != null) _currentAnimState.Events.OnEnd -= RevertToDefaultMovementAnim;
             _currentAnimState = _animancer.Play(anim, _transitionSpeed);
-            _currentAnimState.Events.OnEnd += RevertToDefaultMovementAnim;
-        }
-
-        public void PlayAnimation(CharacterAnimations anim)
-        {
-            if (!_characterAnims.TryGetValue(anim, out ClipTransition animClip)) return;
-            
-            if (_currentAnimState != null) _currentAnimState.Events.OnEnd -= RevertToDefaultMovementAnim;
-            _currentAnimState = _animancer.Play(animClip, _transitionSpeed);
             _currentAnimState.Events.OnEnd += RevertToDefaultMovementAnim;
         }
 
@@ -64,8 +68,8 @@ namespace Untethered.Characters
 
         private void OnGroundedStateChanged(GroundedState oldGroundedState, GroundedState newGroundedState)
         {
-            if (newGroundedState == GroundedState.Landing)
-                PlayAnimation(CharacterAnimations.Landing);
+            if (_currentAnimState == null && newGroundedState == GroundedState.Landing)
+                PlayAnimation(BasicAnimations.Landing);
         }
     }
 }

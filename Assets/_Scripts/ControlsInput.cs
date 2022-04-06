@@ -20,8 +20,14 @@ namespace Untethered.Characters
             _inputActions = new InputActions();
             
             _inputActions.Player.Jump.performed += JumpInput;
+            _inputActions.Player.AbilityOne.performed += AbilityOneInput;
 
             _inputActions.Player.Enable();
+        }
+
+        private void AbilityOneInput(InputAction.CallbackContext obj)
+        {
+            _player.Combat.AttemptToFireAbility(0);
         }
 
         private void JumpInput(InputAction.CallbackContext obj)

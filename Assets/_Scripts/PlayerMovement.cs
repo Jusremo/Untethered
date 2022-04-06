@@ -49,9 +49,12 @@ namespace Untethered.Characters
             float delta = Time.fixedDeltaTime;
             CalculateMovementDirection(delta);
 
-            if (MoveState == MoveState.Airborne) MoveInAir(delta);
-            else if (Moving) Move(delta);
-            else Stop(delta);
+            if (_player.Combat.CombatState == CombatState.None)
+            { 
+                if (MoveState == MoveState.Airborne) MoveInAir(delta);
+                else if (Moving) Move(delta);
+                else Stop(delta);
+            }
 
             ApplyGravity(delta);
         }
@@ -132,7 +135,7 @@ namespace Untethered.Characters
         {
             if (_player.GroundedChecker.GroundedState != GroundedState.Grounded) return;
             
-            _player.CharacterAnimator.PlayAnimation(CharacterAnimations.Jumping);
+            _player.CharacterAnimator.PlayAnimation(BasicAnimations.Jumping);
             _player.GroundedChecker.ForceGroundedStateForTime(GroundedState.Falling, 0.5f);
             _player.Rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.VelocityChange);
         }
