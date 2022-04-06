@@ -7,12 +7,12 @@ using UnityEngine.Events;
 
 namespace Untethered.Characters
 {
-    public enum MoveState {Idle, Walking, Running, Airborne}
+    public enum MoveState {Idle, Walking, Running, Sprinting, Airborne}
 
     public class PlayerMovement : MonoBehaviour
     {
         [TabGroup("Speeds")]
-        [SerializeField] private float _moveSpeed = 7, _moveAcceleration = 10, _stopSpeed = 20, _rotateSpeed = 100, _airSpeed = 3, _airAcceleration = 20;
+        [SerializeField] private float _moveSpeed = 6, _sprintSpeed = 9, _moveAcceleration = 10, _stopSpeed = 20, _rotateSpeed = 100, _airSpeed = 3, _airAcceleration = 20;
 
         [TabGroup("Jump")]
         [SerializeField] private float _jumpForce = 50;
@@ -98,11 +98,13 @@ namespace Untethered.Characters
         private void Move(float delta)
         {
             Vector3 velocity = _player.Rigidbody.velocity;
-            Vector3 targetVelocity = _moveSpeed * MoveDirection;
+            float speed = _player.Input.Sprinting ? _sprintSpeed : _moveSpeed;
+            Vector3 targetVelocity = speed * MoveDirection;
+
             targetVelocity.y = velocity.y;
             _player.Rigidbody.velocity = Vector3.MoveTowards(velocity, targetVelocity, _moveAcceleration * delta);
 
-            SetMoveState(MoveState.Running);
+            SetMoveState(_player.Input.Sprinting ? MoveState.Sprinting : MoveState.Running);
         }   
 
         private void Stop(float delta)

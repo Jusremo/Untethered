@@ -24,6 +24,7 @@ namespace Untethered.Characters
         private void Awake() 
         {
             _animancer = GetComponent<AnimancerComponent>();
+            _animancer.Playable.ApplyAnimatorIK = true;
         }
 
         private void Start() 

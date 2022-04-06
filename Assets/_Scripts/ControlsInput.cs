@@ -12,6 +12,7 @@ namespace Untethered.Characters
 
         private InputActions _inputActions;
         public Vector2 MovementInput {get; private set;}
+        public bool Sprinting { get; private set; }
 
         private void Awake() 
         {
@@ -21,8 +22,15 @@ namespace Untethered.Characters
             
             _inputActions.Player.Jump.performed += JumpInput;
             _inputActions.Player.AbilityOne.performed += AbilityOneInput;
+            _inputActions.Player.Sprint.started += (InputAction.CallbackContext obj) => SetSprinting(true);
+            _inputActions.Player.Sprint.canceled += (InputAction.CallbackContext obj) => SetSprinting(false);
 
             _inputActions.Player.Enable();
+        }
+
+        private void SetSprinting(bool state)
+        {
+            Sprinting = state;
         }
 
         private void AbilityOneInput(InputAction.CallbackContext obj)
