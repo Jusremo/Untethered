@@ -4,6 +4,7 @@ using Animancer;
 using System.Collections.Generic;
 using System;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 namespace Untethered.Characters
 {
@@ -23,24 +24,30 @@ namespace Untethered.Characters
 
     [InlineEditor]
     public abstract class AbilityBase : ScriptableObject
-    {
-        [field: SerializeField] public string Name  {get; private set; }
-        [field: TextArea, SerializeField] public string Description { get; private set; }
-
+    {        
         protected const string PLAY_MAIN_PARTICLE_SYSTEM = "Play Main Particle System", PLAY_ADDITIONAL_PARTICLE_SYSTEM = "Play Additional Particle System", 
-                                TRIGGER_DAMAGE = "Trigger Damage", FINISH_ABILITY = "Finish Ability";
+                                TRIGGER_DAMAGE = "Trigger Damage", TRIGGER_MOVEMENT = "Trigger Movement", FINISH_ABILITY = "Finish Ability";
 
-        [field:SerializeField, EventNames(PLAY_MAIN_PARTICLE_SYSTEM, PLAY_ADDITIONAL_PARTICLE_SYSTEM, TRIGGER_DAMAGE, FINISH_ABILITY)]
+
+        [field: SerializeField, TabGroup("General")] public string Name  {get; private set; }
+        [field: TextArea, SerializeField, TabGroup("General")] public string Description { get; private set; }
+
+        [field:SerializeField, TabGroup("Animation"), EventNames(PLAY_MAIN_PARTICLE_SYSTEM, PLAY_ADDITIONAL_PARTICLE_SYSTEM, TRIGGER_DAMAGE, FINISH_ABILITY, TRIGGER_MOVEMENT)]
         public ClipTransition Animation { get; private set; }
 
-        [field:SerializeField] public BodyPart BodyPartToEmitAbilityFrom {get; private set;}
+        [field:SerializeField, TabGroup("General")] public BodyPart BodyPartToEmitAbilityFrom {get; private set;}
         
-        [SerializeField] private ParticleSystem _mainParticleSystemPrefab;
-        [SerializeField] private List<ParticleSystem> _additionalAnimEventParticleSystemPrefabs;
+        [SerializeField, TabGroup("Particles")] private ParticleSystem _mainParticleSystemPrefab;
+        [SerializeField, TabGroup("Particles")] private List<ParticleSystem> _additionalAnimEventParticleSystemPrefabs;
 
-        [field: SerializeField, FoldoutGroup("Stat Effects")] public float Damage { get; private set; }
-        [field: SerializeField, FoldoutGroup("Stat Effects")] public Targeting Targeting {get; private set;}
+        [field: SerializeField, TabGroup("General")] public float Damage { get; private set; }
+        [field: SerializeField, TabGroup("General")] public Targeting Targeting {get; private set;}
 
+        [field: SerializeField, TabGroup("Movement")] public bool Move {get; private set;}
+        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public float MoveDistance {get; private set;}
+        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public float MoveDuration {get; private set;}
+        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public Ease MovementEase {get; private set;} = Ease.Linear;
+        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public bool MovementTracksTarget {get; private set;}
 
         public ParticleSystem MainParticleSystem { get; private set; }
         public List<ParticleSystem> AdditionalAnimEventParticleSystems { get; private set; }
@@ -56,7 +63,16 @@ namespace Untethered.Characters
             AssignAbilityTransformParent();
             InitializeParticleSystems();
             SetUpTriggerForAbility();
-            Animation.Events.SetCallback(FINISH_ABILITY, () => FinishAbility());
+
+            if (Animation.Events.GetEventExists(FINISH_ABILITY))
+                Animation.Events.SetCallback(FINISH_ABILITY, FinishAbility);
+            else LogMissingAnimEvent(FINISH_ABILITY);
+            if (Move)
+            {
+                if (Animation.Events.GetEventExists(TRIGGER_MOVEMENT))
+                    Animation.Events.SetCallback(TRIGGER_MOVEMENT, StartMovement);
+                else LogMissingAnimEvent(TRIGGER_MOVEMENT);
+            } 
         }
 
         internal virtual void InitializeParticleSystems()
@@ -64,7 +80,9 @@ namespace Untethered.Characters
             if (_mainParticleSystemPrefab)
                 MainParticleSystem = Instantiate(_mainParticleSystemPrefab);
 
-            Animation.Events.SetCallback(PLAY_MAIN_PARTICLE_SYSTEM, () => StartParticleSystem(MainParticleSystem));
+            if (Animation.Events.GetEventExists(PLAY_MAIN_PARTICLE_SYSTEM))
+                Animation.Events.SetCallback(PLAY_MAIN_PARTICLE_SYSTEM, () => StartParticleSystem(MainParticleSystem));
+            else LogMissingAnimEvent(PLAY_MAIN_PARTICLE_SYSTEM);
 
             if (_additionalAnimEventParticleSystemPrefabs.Count == 0) return;
 
@@ -74,6 +92,8 @@ namespace Untethered.Characters
             foreach (var additionalAnimEventParticleSystem in _additionalAnimEventParticleSystemPrefabs)
                 AdditionalAnimEventParticleSystems.Add(Instantiate(additionalAnimEventParticleSystem));
         }
+        
+        private void LogMissingAnimEvent(string missingEvent) => Debug.LogWarning($"Ability {Name} is missing required animation event {missingEvent}");
 
         internal virtual void AssignAbilityTransformParent()
         {
@@ -126,6 +146,12 @@ namespace Untethered.Characters
         {
             if (_abilityOwner.Combat.CombatState == CombatState.Attacking)
                 _abilityOwner.Combat.SetCombatState(CombatState.None);
+        }
+
+        private void StartMovement()
+        {
+            Vector3 targetPos = _abilityOwner.transform.position + (_abilityOwner.transform.forward * MoveDistance);
+            _abilityOwner.Rigidbody.DOMove(targetPos, MoveDuration).SetEase(MovementEase);
         }
 
     }

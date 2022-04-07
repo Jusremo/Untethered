@@ -64,6 +64,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""AbilityTwo"",
+                    ""type"": ""Button"",
+                    ""id"": ""3dddddf5-5047-4bcf-9bd5-354b28699196"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""45554a88-c483-4bb4-b96e-7db81ee5460b"",
@@ -172,6 +181,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab3b02aa-d0ed-41b0-b61f-8e62ea94f2cf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilityTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,6 +204,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_AbilityOne = m_Player.FindAction("AbilityOne", throwIfNotFound: true);
+        m_Player_AbilityTwo = m_Player.FindAction("AbilityTwo", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
     }
 
@@ -248,6 +269,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_AbilityOne;
+    private readonly InputAction m_Player_AbilityTwo;
     private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
@@ -257,6 +279,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @AbilityOne => m_Wrapper.m_Player_AbilityOne;
+        public InputAction @AbilityTwo => m_Wrapper.m_Player_AbilityTwo;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -279,6 +302,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @AbilityOne.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
                 @AbilityOne.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
                 @AbilityOne.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
+                @AbilityTwo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
+                @AbilityTwo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
+                @AbilityTwo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
@@ -298,6 +324,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @AbilityOne.started += instance.OnAbilityOne;
                 @AbilityOne.performed += instance.OnAbilityOne;
                 @AbilityOne.canceled += instance.OnAbilityOne;
+                @AbilityTwo.started += instance.OnAbilityTwo;
+                @AbilityTwo.performed += instance.OnAbilityTwo;
+                @AbilityTwo.canceled += instance.OnAbilityTwo;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
@@ -311,6 +340,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAbilityOne(InputAction.CallbackContext context);
+        void OnAbilityTwo(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }
 }

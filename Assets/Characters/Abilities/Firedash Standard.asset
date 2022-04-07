@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebc8013907848249aa7f27f94969547, type: 3}
+  m_Name: Firedash Standard
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Firedash
+  <Description>k__BackingField: 
+  <Animation>k__BackingField:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes:
+      - 0
+      - 0.21
+      - 0.67
+      - 1
+      _Callbacks: []
+      _Names:
+      - Play Main Particle System
+      - Trigger Movement
+      - Finish Ability
+    _Clip: {fileID: -203655887218126122, guid: d1ccf0e5279e8f84fbdcfa02c561660e, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: 0
+  <BodyPartToEmitAbilityFrom>k__BackingField: 0
+  _mainParticleSystemPrefab: {fileID: 198834492479222464, guid: ae109a6352137194dbd2dbf98ac8988c, type: 3}
+  _additionalAnimEventParticleSystemPrefabs: []
+  <Damage>k__BackingField: 25
+  <Targeting>k__BackingField: 2
+  <Move>k__BackingField: 1
+  <MoveDistance>k__BackingField: 16
+  <MoveDuration>k__BackingField: 0.5
+  <MovementEase>k__BackingField: 4
+  <MovementTracksTarget>k__BackingField: 0
+  <AOEType>k__BackingField: 0

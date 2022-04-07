@@ -21,7 +21,8 @@ namespace Untethered.Characters
             _inputActions = new InputActions();
             
             _inputActions.Player.Jump.performed += JumpInput;
-            _inputActions.Player.AbilityOne.performed += AbilityOneInput;
+            _inputActions.Player.AbilityOne.performed += (InputAction.CallbackContext obj) => _player.Combat.AttemptToFireAbility(0);
+            _inputActions.Player.AbilityTwo.performed += (InputAction.CallbackContext obj) => _player.Combat.AttemptToFireAbility(1);
             _inputActions.Player.Sprint.started += (InputAction.CallbackContext obj) => SetSprinting(true);
             _inputActions.Player.Sprint.canceled += (InputAction.CallbackContext obj) => SetSprinting(false);
 
@@ -31,11 +32,6 @@ namespace Untethered.Characters
         private void SetSprinting(bool state)
         {
             Sprinting = state;
-        }
-
-        private void AbilityOneInput(InputAction.CallbackContext obj)
-        {
-            _player.Combat.AttemptToFireAbility(0);
         }
 
         private void JumpInput(InputAction.CallbackContext obj)

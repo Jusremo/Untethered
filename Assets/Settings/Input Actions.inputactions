@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AbilityTwo",
+                    "type": "Button",
+                    "id": "3dddddf5-5047-4bcf-9bd5-354b28699196",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "Button",
                     "id": "45554a88-c483-4bb4-b96e-7db81ee5460b",
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab3b02aa-d0ed-41b0-b61f-8e62ea94f2cf",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

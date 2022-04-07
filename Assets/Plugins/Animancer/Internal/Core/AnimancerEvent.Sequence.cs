@@ -278,6 +278,15 @@ namespace Animancer
                 throw new ArgumentException($"No event exists with the name '{name}'.");
             }
 
+            public bool GetEventExists(string name, int startIndex = 0)
+            {
+                startIndex = IndexOf(name, startIndex);
+                if (startIndex >= 0)
+                    return true;
+
+                return false;
+            }
+
             /************************************************************************************************************************/
             #endregion
             /************************************************************************************************************************/

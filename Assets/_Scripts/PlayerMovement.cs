@@ -41,7 +41,8 @@ namespace Untethered.Characters
         private void Update() 
         {
             float delta = Time.deltaTime;
-            Rotate(delta);
+            if (_player.Combat.CombatState == CombatState.None)
+                RotateWithMovement(delta);
         }
 
         private void FixedUpdate() 
@@ -121,7 +122,7 @@ namespace Untethered.Characters
             _player.Rigidbody.velocity += forceToWalkingSurface * delta;
         }     
                  
-        private void Rotate(float delta)
+        private void RotateWithMovement(float delta)
         {
             if (!Moving) return;
 

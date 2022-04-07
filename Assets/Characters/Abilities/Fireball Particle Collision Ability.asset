@@ -36,3 +36,8 @@ MonoBehaviour:
   - {fileID: 198555335796361922, guid: 06a40dc0cc56f284e871f3fd732fd571, type: 3}
   <Damage>k__BackingField: 25
   <Targeting>k__BackingField: 2
+  <Move>k__BackingField: 0
+  <MoveDistance>k__BackingField: 0
+  <MoveDuration>k__BackingField: 0
+  <MovementEase>k__BackingField: 1
+  <MovementTracksTarget>k__BackingField: 0
