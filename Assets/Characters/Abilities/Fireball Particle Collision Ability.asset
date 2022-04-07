@@ -34,10 +34,19 @@ MonoBehaviour:
   _mainParticleSystemPrefab: {fileID: 198555335796361922, guid: 6d679b668aa700744898f3b99c9c45ef, type: 3}
   _additionalAnimEventParticleSystemPrefabs:
   - {fileID: 198555335796361922, guid: 06a40dc0cc56f284e871f3fd732fd571, type: 3}
+  _stopParticlesOnFinish: 0
+  _alignParticlesWithCharacterAim: 1
   <Damage>k__BackingField: 25
   <Targeting>k__BackingField: 2
   <Move>k__BackingField: 0
-  <MoveDistance>k__BackingField: 0
+  <MoveSpeed>k__BackingField: 0
+  <MoveDirection>k__BackingField:
+    x: 0
+    y: 0
+    z: 0
+    Vector3: {x: 0, y: 0, z: 0}
   <MoveDuration>k__BackingField: 0
   <MovementEase>k__BackingField: 1
   <MovementTracksTarget>k__BackingField: 0
+  <StopSpeed>k__BackingField: 0
+  <StopDuration>k__BackingField: 0

@@ -18,26 +18,43 @@ MonoBehaviour:
     _FadeDuration: 0.25
     _Events:
       _NormalizedTimes:
-      - 0
-      - 0.21
-      - 0.67
+      - 0.1
+      - 0.16
+      - 0.82
       - 1
       _Callbacks: []
       _Names:
-      - Play Main Particle System
       - Trigger Movement
+      - Play Main Particle System
       - Finish Ability
     _Clip: {fileID: -203655887218126122, guid: d1ccf0e5279e8f84fbdcfa02c561660e, type: 3}
-    _Speed: 1
+    _Speed: 1.25
     _NormalizedStartTime: 0
   <BodyPartToEmitAbilityFrom>k__BackingField: 0
-  _mainParticleSystemPrefab: {fileID: 198834492479222464, guid: ae109a6352137194dbd2dbf98ac8988c, type: 3}
+  _mainParticleSystemPrefab: {fileID: 6633110645368927136, guid: 47ac745a8b360044eb1ffc91c203977c, type: 3}
   _additionalAnimEventParticleSystemPrefabs: []
+  _stopParticlesOnFinish: 1
+  _alignParticlesWithCharacterAim: 0
   <Damage>k__BackingField: 25
   <Targeting>k__BackingField: 2
   <Move>k__BackingField: 1
-  <MoveDistance>k__BackingField: 16
-  <MoveDuration>k__BackingField: 0.5
-  <MovementEase>k__BackingField: 4
-  <MovementTracksTarget>k__BackingField: 0
+  <Movements>k__BackingField:
+  - <MoveDirection>k__BackingField:
+      x: 0
+      y: 0
+      z: 1
+      Vector3: {x: 0, y: 0, z: 1}
+    <MovementEase>k__BackingField: 3
+    <MovementTracksTarget>k__BackingField: 0
+    <MoveSpeed>k__BackingField: 35
+    <MaxMoveDuration>k__BackingField: 0.2
+  - <MoveDirection>k__BackingField:
+      x: 0
+      y: 0
+      z: 1
+      Vector3: {x: 0, y: 0, z: 1}
+    <MovementEase>k__BackingField: 3
+    <MovementTracksTarget>k__BackingField: 0
+    <MoveSpeed>k__BackingField: 10
+    <MaxMoveDuration>k__BackingField: 0.5
   <AOEType>k__BackingField: 0

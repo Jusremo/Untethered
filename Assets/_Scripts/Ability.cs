@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using Untethered.Utility;
 
 namespace Untethered.Characters
 {
@@ -39,15 +40,10 @@ namespace Untethered.Characters
         
         [SerializeField, TabGroup("Particles")] private ParticleSystem _mainParticleSystemPrefab;
         [SerializeField, TabGroup("Particles")] private List<ParticleSystem> _additionalAnimEventParticleSystemPrefabs;
+        [SerializeField, TabGroup("Particles")] private bool _stopParticlesOnFinish, _alignParticlesWithCharacterAim;
 
         [field: SerializeField, TabGroup("General")] public float Damage { get; private set; }
         [field: SerializeField, TabGroup("General")] public Targeting Targeting {get; private set;}
-
-        [field: SerializeField, TabGroup("Movement")] public bool Move {get; private set;}
-        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public float MoveDistance {get; private set;}
-        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public float MoveDuration {get; private set;}
-        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public Ease MovementEase {get; private set;} = Ease.Linear;
-        [field: SerializeField, TabGroup("Movement"), ShowIf("Move")] public bool MovementTracksTarget {get; private set;}
 
         public ParticleSystem MainParticleSystem { get; private set; }
         public List<ParticleSystem> AdditionalAnimEventParticleSystems { get; private set; }
@@ -132,7 +128,7 @@ namespace Untethered.Characters
         internal virtual void StartParticleSystem(ParticleSystem particleSystem)
         {
             particleSystem.transform.SetParent( _abilityPositioningParent , false);
-            particleSystem.transform.forward = _abilityOwner.Combat.GetAimPosition();
+            particleSystem.transform.forward = _alignParticlesWithCharacterAim ? _abilityOwner.Combat.GetAimPosition() : _abilityOwner.transform.forward;
             particleSystem.Play();
         }
 
@@ -146,13 +142,27 @@ namespace Untethered.Characters
         {
             if (_abilityOwner.Combat.CombatState == CombatState.Attacking)
                 _abilityOwner.Combat.SetCombatState(CombatState.None);
+            if (_stopParticlesOnFinish)
+                MainParticleSystem.Stop();
         }
+
+
+
+        [field: SerializeField, TabGroup("Movement")] public bool Move {get; private set;}
+        [field: SerializeField, TabGroup("Movement")] public List<VelocityTween> Movements {get; private set;}
 
         private void StartMovement()
         {
-            Vector3 targetPos = _abilityOwner.transform.position + (_abilityOwner.transform.forward * MoveDistance);
-            _abilityOwner.Rigidbody.DOMove(targetPos, MoveDuration).SetEase(MovementEase);
+            Sequence sequence = DOTween.Sequence();
+            foreach (var Movement in Movements)
+            {
+                Vector3 moveDirection = _abilityOwner.transform.TransformDirection(Movement.MoveDirection.Vector3.normalized);
+                
+                if (Movement.Tween != null && Movement.Tween.active) Movement.Tween.Kill();
+                Movement.Tween = DOTween.To(() => _abilityOwner.Rigidbody.velocity, x => _abilityOwner.Rigidbody.velocity = x, moveDirection * Movement.MoveSpeed, Movement.MaxMoveDuration).Pause();
+                sequence.Append(Movement.Tween);
+            }
+            sequence.Play();
         }
-
     }
 }

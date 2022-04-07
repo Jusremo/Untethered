@@ -2923,10 +2923,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2.5, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 0
   m_YDamping: 0.25
-  m_ZDamping: 0.25
+  m_ZDamping: 2
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -4740,7 +4740,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166615549}
-  m_LocalRotation: {x: 0.092541374, y: -0.000000004283135, z: 3.9807532e-10, w: 0.9957089}
+  m_LocalRotation: {x: 0.074376225, y: 0.00000000428968, z: -3.1993636e-10, w: 0.9972303}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21595,7 +21595,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715479548}
-  m_LocalRotation: {x: 0.046161268, y: 1e-45, z: -0, w: 0.99893403}
+  m_LocalRotation: {x: 0.027945044, y: -0.00000001719966, z: 4.808331e-10, w: 0.9996095}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -33608,7 +33608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087996139}
-  m_LocalRotation: {x: 0.06931982, y: 0.0000000042912482, z: -2.9818586e-10, w: 0.9975945}
+  m_LocalRotation: {x: 0.051124156, y: -0.000000017712738, z: 9.0673447e-10, w: 0.99869233}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -48183,11 +48183,11 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 4.5
-    m_Radius: 3
-  - m_Height: 2.5
     m_Radius: 4
+  - m_Height: 2.5
+    m_Radius: 5
   - m_Height: 0.4
-    m_Radius: 3
+    m_Radius: 4
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 166615550}
@@ -48201,7 +48201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523982137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.533, z: -4}
+  m_LocalPosition: {x: -0.516, y: 2.533, z: -21.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 166615551}
@@ -50438,10 +50438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2.5, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 0
   m_YDamping: 0.25
-  m_ZDamping: 0.25
+  m_ZDamping: 2
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -58170,8 +58170,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813834578}
-  m_LocalRotation: {x: 0.06931982, y: 0.00000000429153, z: -2.981703e-10, w: 0.99759454}
-  m_LocalPosition: {x: 0, y: 2.533, z: -4}
+  m_LocalRotation: {x: 0.051124156, y: -0.000000017927023, z: 8.957647e-10, w: 0.99869233}
+  m_LocalPosition: {x: -0.516, y: 2.533, z: -21.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 368718415}
@@ -59497,10 +59497,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2.5, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 0
   m_YDamping: 0.25
-  m_ZDamping: 0.25
+  m_ZDamping: 2
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -69163,7 +69163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845623230771956, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.516
       objectReference: {fileID: 0}
     - target: {fileID: 4845623230771956, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: m_LocalPosition.y
@@ -69171,7 +69171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845623230771956, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -16.77
       objectReference: {fileID: 0}
     - target: {fileID: 4845623230771956, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: m_LocalRotation.w
@@ -69201,14 +69201,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 533755936099737101, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
-      propertyPath: <Abilities>k__BackingField.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 533755936099737101, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
-      propertyPath: <Abilities>k__BackingField.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 20e069120084fff47956b28209dde53b, type: 2}
     - target: {fileID: 715595099443606328, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -69241,6 +69233,10 @@ PrefabInstance:
       value: '"path":"_movementAnims.{4es}","value":$eref:2'
       objectReference: {fileID: 0}
     - target: {fileID: 715595099443606328, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: d1dac49f333e9224c9e4437d2aaf8ee2, type: 3}
+    - target: {fileID: 715595099443606328, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -69251,7 +69247,7 @@ PrefabInstance:
     - target: {fileID: 715595099443606328, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
       value: 
-      objectReference: {fileID: -203655887218126122, guid: d1dac49f333e9224c9e4437d2aaf8ee2, type: 3}
+      objectReference: {fileID: -203655887218126122, guid: 2504f5717136a7f4cb635bbe6ff8087c, type: 3}
     - target: {fileID: 715595099443606328, guid: 48f93fef749445e49a464c13d5f94855, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[2]
       value: 

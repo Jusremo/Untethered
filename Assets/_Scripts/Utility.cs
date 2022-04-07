@@ -5,7 +5,7 @@ using System;
 using System.Numerics;
 using Vector3 = UnityEngine.Vector3;
 using Quaternion = UnityEngine.Quaternion;
-
+using Sirenix.OdinInspector;
 
 public enum Layers {Characters = 6}
 public enum LayerMasks 
@@ -15,6 +15,21 @@ public enum LayerMasks
 
 namespace Untethered.Utility
 {
+    [System.Serializable]
+    public class RangeVector3
+    {
+        [OnStateUpdate("UpdateVector3")]
+        [SerializeField, Range(-1, 1), HorizontalGroup("Group 1", LabelWidth = 20)] public float x , y, z;
+
+        [HideInInspector] public Vector3 Vector3;
+
+        public void UpdateVector3()
+        {
+            Vector3.x = x;
+            Vector3.y = y;
+            Vector3.z = z;
+        }
+    }
     public class MathUtility 
     {
         public static enumType RandomEnumValue<enumType>()

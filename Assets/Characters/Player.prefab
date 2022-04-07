@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcc44224d1e4664e90e8f1f9cf1da74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 6
-  _sprintSpeed: 9
+  _moveSpeed: 5.5
+  _sprintSpeed: 8.5
   _moveAcceleration: 50
   _stopSpeed: 100
   _rotateSpeed: 800
@@ -123,6 +123,7 @@ MonoBehaviour:
   _maxStamina: 100
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: bb5dd62d0677c7447b90cdeecdd12de0, type: 2}
+  - {fileID: 11400000, guid: 20e069120084fff47956b28209dde53b, type: 2}
   OnCombatStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2372,7 +2373,7 @@ MonoBehaviour:
     - {fileID: -203655887218126122, guid: aa718be457b302f4b854ef85d957a978, type: 3}
     - {fileID: -203655887218126122, guid: 14952a0e42aa2df488cf14cd8c43a2d4, type: 3}
     - {fileID: -203655887218126122, guid: 10a303265cb810c45bf4c9f709fd8733, type: 3}
-    - {fileID: -203655887218126122, guid: d1dac49f333e9224c9e4437d2aaf8ee2, type: 3}
+    - {fileID: -203655887218126122, guid: 2504f5717136a7f4cb635bbe6ff8087c, type: 3}
     - {fileID: -203655887218126122, guid: f211dcb89e2043e4492fd859a5548faf, type: 3}
     - {fileID: -203655887218126122, guid: eeaed8d7d2cec6e4cb361baf7faa33c0, type: 3}
     - {fileID: -203655887218126122, guid: 0b52f36a35e04fb4a8a07af1a19ac19f, type: 3}
