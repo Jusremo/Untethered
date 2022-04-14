@@ -11,7 +11,7 @@ namespace Untethered.Characters
 
         private RaycastHit _raycastHit;
 
-        internal override void SetUpTriggerForAbility()
+        internal override void SetUpTriggerForAbilityDamage()
         {
             // Animation.Events.SetCallback(TRIGGER_DAMAGE, TriggerAbilityAreaOfEffect);
         }

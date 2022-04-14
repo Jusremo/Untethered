@@ -5,7 +5,7 @@ namespace Untethered.Characters
     [CreateAssetMenu(fileName = "New Particle Collision Ability", menuName = "Untethered/Particle Collision Ability")]
     public class ParticleCollisionAbility : AbilityBase
     {
-        internal override void SetUpTriggerForAbility()
+        internal override void SetUpTriggerForAbilityDamage()
         {
             if (MainParticleSystem)
             {

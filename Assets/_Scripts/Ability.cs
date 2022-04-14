@@ -53,12 +53,18 @@ namespace Untethered.Characters
 
         protected int _animEventParticleSystemIteration;
 
+
+
+        #region Initialization
+        
+        private void LogMissingAnimEvent(string missingEvent) => Debug.LogWarning($"Ability {Name} is missing required animation event {missingEvent}");
+
         public virtual void Initialize(Character abilityOwner)
         {
             _abilityOwner = abilityOwner;
             AssignAbilityTransformParent();
             InitializeParticleSystems();
-            SetUpTriggerForAbility();
+            SetUpTriggerForAbilityDamage();
 
             if (Animation.Events.GetEventExists(FINISH_ABILITY))
                 Animation.Events.SetCallback(FINISH_ABILITY, FinishAbility);
@@ -88,8 +94,6 @@ namespace Untethered.Characters
             foreach (var additionalAnimEventParticleSystem in _additionalAnimEventParticleSystemPrefabs)
                 AdditionalAnimEventParticleSystems.Add(Instantiate(additionalAnimEventParticleSystem));
         }
-        
-        private void LogMissingAnimEvent(string missingEvent) => Debug.LogWarning($"Ability {Name} is missing required animation event {missingEvent}");
 
         internal virtual void AssignAbilityTransformParent()
         {
@@ -105,7 +109,14 @@ namespace Untethered.Characters
                 Debug.LogWarning("Ability failed to emit from Body Part " + BodyPartToEmitAbilityFrom + ", " + _abilityOwner.name + " does not have Body Part configured under Body Parts For Abilities!");
         }
 
-        internal virtual void SetUpTriggerForAbility() {}
+        internal virtual void SetUpTriggerForAbilityDamage() {}
+
+        #endregion
+
+
+
+
+        #region Casting Sequence
 
         internal virtual void BeginCastingAbility() 
         {
@@ -146,7 +157,12 @@ namespace Untethered.Characters
                 MainParticleSystem.Stop();
         }
 
+        #endregion
 
+
+
+
+        #region Movement
 
         [field: SerializeField, TabGroup("Movement")] public bool Move {get; private set;}
         [field: SerializeField, TabGroup("Movement")] public List<VelocityTween> Movements {get; private set;}
@@ -164,5 +180,8 @@ namespace Untethered.Characters
             }
             sequence.Play();
         }
+
+        #endregion
+
     }
 }
